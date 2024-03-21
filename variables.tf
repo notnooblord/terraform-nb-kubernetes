@@ -300,6 +300,7 @@ variable "node_groups" {
 variable "node_groups_defaults" {
   description = "Map of common default values for Node groups."
   type = object({
+    name          = optional(string)
     platform_id   = optional(string, "standard-v2")
     node_cores    = optional(number, 4)
     node_memory   = optional(number, 8)
