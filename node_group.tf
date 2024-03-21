@@ -26,7 +26,7 @@ resource "nebius_kubernetes_node_group" "kube_node_groups" {
 
     platform_id = lookup(each.value, "platform_id", var.node_groups_defaults.platform_id)
 
-    name     = lookup(each.value, "name", var.node_groups_defaults.name)
+    name     = lookup(each.value, "node_name", var.node_groups_defaults.node_name)
     metadata = lookup(each.value, "metadata", var.node_groups_defaults.metadata)
     resources {
       cores         = lookup(each.value, "node_cores", var.node_groups_defaults.node_cores)
