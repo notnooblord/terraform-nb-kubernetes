@@ -299,25 +299,37 @@ variable "node_groups" {
 }
 variable "node_groups_defaults" {
   description = "Map of common default values for Node groups."
-  type        = map
-  default = {
-    platform_id   = "standard-v2"
-    node_cores    = 4
-    node_memory   = 8
-    node_gpus     = 0
-    core_fraction = 100
-    disk_type     = "network-ssd"
-    disk_size     = 32
-    preemptible   = false
-    nat           = false
-    ipv4          = true
-    ipv6          = false
+  type = object({
+    platform_id   = optional(string, "standard-v2")
+    node_cores    = optional(number, 4)
+    node_memory   = optional(number, 8)
+    node_gpus     = optional(number, 0)
+    core_fraction = optional(number, 100)
+    disk_type     = optional(string, "network-ssd")
+    disk_size     = optional(number, 32)
+    preemptible   = optional(bool, false)
+    nat           = optional(bool, false)
+    ipv4          = optional(bool, true)
+    ipv6          = optional(bool, false)
+    metadata      = optional(map(string))
+    # default = {
+    #   platform_id   = "standard-v2"
+    #   node_cores    = 4
+    #   node_memory   = 8
+    #   node_gpus     = 0
+    #   core_fraction = 100
+    #   disk_type     = "network-ssd"
+    #   disk_size     = 32
+    #   preemptible   = false
+    #   nat           = false
+    #   ipv4          = true
+    #   ipv6          = false
 
-    metadata = {
-      serial-port-enable = 1
-      ssh-keys           = ""
-    }
-  }
+    #   metadata = {
+    #     serial-port-enable = 1
+    #     ssh-keys           = ""
+    #   }
+  })
 }
 variable "network_acceleration_type" {
   description = "Network acceleration type for the Kubernetes node group"
