@@ -25,6 +25,7 @@ resource "nebius_kubernetes_node_group" "kube_node_groups" {
   instance_template {
     platform_id = lookup(each.value, "platform_id", var.node_groups_defaults.platform_id)
 
+    metadata = lookup(each.value, "metadata", var.node_groups_defaults.metadata)
     resources {
       cores         = lookup(each.value, "node_cores", var.node_groups_defaults.node_cores)
       core_fraction = lookup(each.value, "core_fraction", var.node_groups_defaults.core_fraction)
@@ -36,7 +37,7 @@ resource "nebius_kubernetes_node_group" "kube_node_groups" {
     dynamic "gpu_settings" {
       for_each = compact([lookup(each.value, "gpu_cluster_id", null)])
       content {
-        gpu_cluster_id = each.value.gpu_cluster_id
+        gpu_cluster_id  = each.value.gpu_cluster_id
         gpu_environment = "runc"
       }
     }
