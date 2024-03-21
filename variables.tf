@@ -312,7 +312,10 @@ variable "node_groups_defaults" {
     nat           = false
     ipv4          = true
     ipv6          = false
-    metadata      = {}
+    metadata = {
+      serial-port-enable = 1
+      ssh-keys           = ""
+    }
   }
 }
 variable "network_acceleration_type" {
