@@ -312,6 +312,7 @@ variable "node_groups_defaults" {
     nat           = false
     ipv4          = true
     ipv6          = false
+
     metadata = {
       serial-port-enable = 1
       ssh-keys           = ""
