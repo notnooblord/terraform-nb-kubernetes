@@ -299,7 +299,7 @@ variable "node_groups" {
 }
 variable "node_groups_defaults" {
   description = "Map of common default values for Node groups."
-  type        = map(any)
+  type        = map
   default = {
     platform_id   = "standard-v2"
     node_cores    = 4
